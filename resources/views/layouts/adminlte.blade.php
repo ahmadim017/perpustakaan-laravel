@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="{{asset('public/asset/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- datatable -->
+  <link rel="stylesheet" href="{{asset('public/asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('public/asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('public/asset/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -113,7 +116,7 @@
           
           
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.author.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Penulis
@@ -204,9 +207,16 @@
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('public/asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('public/asset/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('public/asset/dist/js/demo.js')}}"></script>
+
+@stack('script')
 </body>
 </html>
