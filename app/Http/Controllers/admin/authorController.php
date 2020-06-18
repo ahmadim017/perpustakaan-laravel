@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Facades\Datatables;
 use App\author;
 
 class authorController extends Controller
@@ -25,7 +26,7 @@ class authorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.author.create');
     }
 
     /**
@@ -36,7 +37,14 @@ class authorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+        $penulis = new author;
+        $penulis->name = $request->get('name');
+        $penulis->save();
+
+        return redirect()->route('admin.author.create')->with('status','Data Berhasil disimpan');
     }
 
     /**
@@ -56,9 +64,9 @@ class authorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(author $author)
     {
-        //
+        return view('admin.author.edit',['author' => $author]);
     }
 
     /**
@@ -68,9 +76,13 @@ class authorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, author $author)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+       $author->update($request->only('name'));
+       return redirect()->route('admin.author.index')->with('status','Data Berhasil diupdate');
     }
 
     /**
@@ -79,13 +91,17 @@ class authorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('admin.author.index')->with('Status','Data Berhasil dihapus');
     }
 
     public function showData()
     {
-        return datatables()->of(author::query())->toJson();
+        return DataTables()->of(author::orderBy('id','DESC'))
+        ->addColumn('action', 'admin.author.action')
+        ->addIndexColumn()
+        ->rawColumns(['action'])->toJson();
     }
 }

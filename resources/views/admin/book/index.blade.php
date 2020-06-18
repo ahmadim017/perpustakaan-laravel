@@ -1,14 +1,14 @@
 @extends('layouts.adminlte')
 
 @section('tittle')
-    Data Penulis
+    Daftar Buku
 @endsection
 
 @section('content')
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-12 text-right">
-    <a href="{{route('admin.author.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle fa-sm"></i> Tambah Penulis</a>
+    <a href="{{route('admin.book.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle fa-sm"></i> Tambah Buku</a>
     </div> 
 </div><br>
 @if (session('status'))
@@ -37,7 +37,11 @@
         <thead>
         <tr>
           <th>#</th>
-          <th>Nama</th>
+          <th>Penulis</th>
+          <th>Judul Buku</th>
+          <th>Deskripsi</th>
+          <th>Cover Buku</th>
+          <th>Jumlah</th>
           <th>Aksi</th>
         </tr>
         </thead>
@@ -71,23 +75,28 @@
 
 <script>
     $(function () {
-      $("#dataTable").DataTable({
-        "responsive": true,
-        "autoWidth": false,
+      $('#dataTable').DataTable({
+        responsive : true,
+        autoWidth  : false,
         serverSide : true,
         processing : true,
-        ajax: '{{route('admin.author.data')}}',
+        ajax: '{{route('admin.book.data')}}',
         columns : [
             { data: 'id'},
-            { data: 'name'},
+            { data: 'author'},
+            { data: 'tittle'},
+            { data: 'deskripsi'},
+            { data: 'cover'},
+            { data: 'qty'},
             { data: 'action'}
+            
         ],
         "columnDefs": [
+   
       { "width": "5%", "targets": 1 },
       { visible: false, "targets": 0 }
   ]
       });
-    
     });
   </script>
 @endpush

@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('tittle');
             $table->text('deskripsi');
-            $table->string('cover');
+            $table->string('cover')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('authors')
