@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','koleksiController@index')->name('homepage');
 
+Route::get('detail/{book}','koleksiController@show')->name('showbook');
+
+Route::post('book/{book}/pinjam','koleksiController@pinjam')->name('pinjam')->middleware('auth');
+
+Route::get('/dashboard','koleksiController@dashboard')->name('dashboard')->middleware('auth');
 
 Auth::routes(['verify' => true]);
 

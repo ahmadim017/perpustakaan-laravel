@@ -25,4 +25,9 @@ class book extends Model
 
         return 'https://via.placeholder.com/150x200.png?text=No+Images';
     }
+
+    public function pinjam()
+    {
+        return $this->belongsToMany(User::class, 'pinjam_history')->withTimestamps();
+    }
 }
