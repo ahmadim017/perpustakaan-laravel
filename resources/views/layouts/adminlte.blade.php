@@ -105,7 +105,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.dashboard.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -133,6 +133,14 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="{{route('admin.buku.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Peminjaman Buku
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -145,6 +153,12 @@
                 <a href="../tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../tables/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kategori</p>
                 </a>
               </li>
             </ul>

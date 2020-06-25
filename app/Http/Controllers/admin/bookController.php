@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 use App\book;
+use App\author;
 use illuminate\Support\Facades\Storage;
 
 class bookController extends Controller
@@ -130,7 +131,8 @@ class bookController extends Controller
 
     public function showData()
     {
-        $book = book::orderBy('tittle','ASC');
+        $book = book::orderBy('tittle','ASC')->get();
+        $book->load('author');
 
         return DataTables()->of($book)
        ->addColumn('author', function(book $model){

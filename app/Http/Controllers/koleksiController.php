@@ -27,7 +27,7 @@ class koleksiController extends Controller
     {
         $user = Auth()->user();
 
-        if ($user->pinjam()->where('books.id', $book->id)->count() > 0) {
+        if ($user->pinjam()->where('books.id', $book->id)->where('return_at', NULL)->count() > 0) {
             return redirect()->back()->with('status','Anda Sudah Meminjam Buku dengan Judul :'. $book->tittle);
         }
         $user->pinjam()->attach($book);
