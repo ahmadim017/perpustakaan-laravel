@@ -58,6 +58,20 @@
             </div>
         </div>
         <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Kategori</label>
+          <div class="col-sm-6">
+          <select name="kategori_id" id="kategori" class="form-control select2 @error('kategori_id') is-invalid @enderror">
+              <option value=""></option>
+              @foreach ($kategori as $k)
+              <option value="{{old('kategori_id')}} {{$k->id}}">{{$k->nama_kategori}}</option>
+              @endforeach
+          </select>
+          @error('kategori_id')
+            <span class="help-block">{{$message}}</span>
+          @enderror
+          </div>
+      </div>
+        <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Cover</label>
             <div class="col-sm-10">
             <input type="file" name="cover" class="form-control @error('cover') is-invalid @enderror " value="{{old('cover')}}">

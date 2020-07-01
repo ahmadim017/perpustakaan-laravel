@@ -26,7 +26,15 @@ class dashController extends Controller
             $penulis[] = $k->name;
             $total[] = $k->total;
         } 
-        //dd($buku);
-        return view('admin.dashboard.index',['book' => $book,'author' => $author,'borrow' => $borrow,'kembali' => $kembali,'penulis' => $penulis,'total' => $total]);
+        $kategori = DB::table('books')->join('kategori','books.kategori_id','=','kategori.id')
+        ->select('kategori.nama_kategori',DB::raw('count(*) as totalkategori, nama_kategori'))
+        ->where('nama_kategori','<>',1)->groupBy('nama_kategori')->get();
+        $datakategori = [];
+
+        foreach ($kategori as $k){
+            $datakategori[] = [$k->nama_kategori,$k->totalkategori];
+        }
+        //dd($datakategori);
+        return view('admin.dashboard.index',['book' => $book,'author' => $author,'borrow' => $borrow,'kembali' => $kembali,'penulis' => $penulis,'total' => $total,'datakategori' => $datakategori]);
     }
 }

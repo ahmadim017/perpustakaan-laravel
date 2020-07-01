@@ -18,3 +18,7 @@ Route::resource('author', 'authorController');
 
 Route::resource('book', 'bookController');
 
+Route::resource('kategori', 'kategoriController');
+
+Route::resource('user', 'UserController');
+

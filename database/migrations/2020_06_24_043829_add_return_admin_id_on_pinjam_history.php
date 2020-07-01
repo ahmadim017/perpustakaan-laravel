@@ -28,7 +28,7 @@ class AddReturnAdminIdOnPinjamHistory extends Migration
     public function down()
     {
         Schema::table('pinjam_history', function (Blueprint $table) {
-            $table->dropColumn('return_ad');
+            $table->dropColumn('return_at');
             $table->dropColumn('admin_id');
         });
     }

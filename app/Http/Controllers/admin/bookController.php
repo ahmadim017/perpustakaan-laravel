@@ -29,7 +29,8 @@ class bookController extends Controller
     public function create()
     {
         $penulis = \App\author::all();
-        return view('admin.book.create',['penulis' => $penulis]);
+        $kategori = \App\kategori::all();
+        return view('admin.book.create',['penulis' => $penulis, 'kategori' => $kategori]);
     }
 
     /**
@@ -44,6 +45,7 @@ class bookController extends Controller
             'tittle' => 'required|min:3',
             'deskripsi' => 'required|min:10',
             'author_id' => 'required',
+            'kategori_id' => 'required',
             'cover' => 'file|image',
             'qty' => 'required|numeric'
         ]);
@@ -56,6 +58,7 @@ class bookController extends Controller
             'tittle' => $request->tittle,
             'deskripsi' => $request->deskripsi,
             'author_id' => $request->author_id,
+            'kategori_id' => $request->kategori_id,
             'cover' => $cover,
             'qty' => $request->qty
         ]);
@@ -82,7 +85,8 @@ class bookController extends Controller
     public function edit(book $book)
     {
         $penulis = \App\author::all();
-        return view('admin.book.edit',['book' => $book,'penulis' => $penulis]);
+        $kategori = \App\kategori::all();
+        return view('admin.book.edit',['book' => $book,'penulis' => $penulis,'kategori' => $kategori]);
     }
 
     /**
@@ -98,6 +102,7 @@ class bookController extends Controller
             'tittle' => 'required|min:3',
             'deskripsi' => 'required|min:10',
             'author_id' => 'required',
+            'kategori_id' => 'required',
             'cover' => 'file|image',
             'qty' => 'required|numeric'
         ]);
@@ -111,6 +116,7 @@ class bookController extends Controller
             'tittle' => $request->tittle,
             'deskripsi' => $request->deskripsi,
             'author_id' => $request->author_id,
+            'kategori_id' => $request->kategori_id,
             'cover' => $cover,
             'qty' => $request->qty
         ]);
